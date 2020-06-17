@@ -37,7 +37,7 @@ class SignUp:
         self.loadedData = self.cuttingList()
         # 필요한 데이터만 남기고 자른다.
 
-    def setData(self):
+    def addUser(self):
         """
             사용자 정보를 입력받고 체크 후 저장.
         """

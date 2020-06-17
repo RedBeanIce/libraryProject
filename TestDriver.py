@@ -3,7 +3,7 @@
 """
 
 import user
-import datetime
+import book
 import dataControl
 
 
@@ -17,8 +17,15 @@ if __name__ == '__main__':
     print(a)
     '''
 
+    '''
     userTest = user.SignUp()
-    userTest.setData()
+    userTest.addUser()
+    '''
+
+    bookTest = book.Book()
+    bookTest.addBook()
+
+
 
     # file 열기 모드는 a 덧붙인다.
 
