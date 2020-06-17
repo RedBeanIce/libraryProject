@@ -1,0 +1,5 @@
+김현준 19960203 남자 01043362155 guswns121234@naver.com C:\Users\guswn\Desktop\pythonProject\userPicture\test.png 
+김씨 12224523 남자 01033334444 wngus2323@naver.com C:\Users\guswn\Desktop\pythonProject\userPicture\test2.png 
+박재훈 19970228 남자 01033334455 shren43@naver.com c://temp 
+김규동 19960503 남자 01055666374 guswns12123@gmail.com c:/User/test 
+테스터 20201617 여자 01044339966 tester@localhost c:/temp/tester 
