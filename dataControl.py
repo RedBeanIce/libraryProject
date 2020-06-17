@@ -19,9 +19,8 @@ class DataSaver:
     """
 
     def saveData(self, fileName):
-        file = open(fileName, 'a', encoding='UTF-8')
+        file = open(fileName, 'a')
         # file 열기 모드는 a 덧붙인다는 뜻.
-
         file.write(self.dataLine)
 
         file.close()

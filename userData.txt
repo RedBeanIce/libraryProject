@@ -3,3 +3,4 @@
 박재훈 19970228 남자 01033334455 shren43@naver.com c://temp 
 김규동 19960503 남자 01055666374 guswns12123@gmail.com c:/User/test 
 테스터 20201617 여자 01044339966 tester@localhost c:/temp/tester 
+김현준 33334444 남자 55556666 dddd@ssss c:11 
