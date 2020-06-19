@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 import user
+import book
 from tkinter import messagebox
 
 class GUIMaker:
@@ -72,10 +73,10 @@ class GUIMaker:
         phoneNum = StringVar()
         eMail = StringVar()
 
-        def babo():
+        def send_data():
             """
-            입력 버튼의 이벤트.
-            여기서 유저 객체를 생성하고 값들을 집어넣을 것이다.
+                입력 버튼의 이벤트.
+                여기서 유저 객체를 생성하고 값들을 집어넣을 것이다.
             :return: nothing
             """
             print(name.get(), birthday.get(), sex.get(), phoneNum.get(), eMail.get())
@@ -102,7 +103,7 @@ class GUIMaker:
         eMailLabel = Label(self.userRegistWindow, text="이메일").grid(row=8, column=1, sticky="W")
         eMailTextBox = Entry(self.userRegistWindow, textvariable=eMail, width=30).grid(row=9, column=1, sticky="W")
 
-        oKayButton = Button(self.userRegistWindow, text="입력 완료", width=10, command=babo).grid(row=10, column=3)
+        oKayButton = Button(self.userRegistWindow, text="입력 완료", width=10, command=send_data).grid(row=10, column=3)
 
     def bookRegiWindow(self):
         """
@@ -114,6 +115,47 @@ class GUIMaker:
         self.bookRegistWindow = tk.Tk()
         self.bookRegistWindow.title("도서 등록")
         self.bookRegistWindow.geometry("500x300")
+
+        title = StringVar()
+        writer = StringVar()
+        price = StringVar()
+        hyperLink = StringVar()
+        isbn = StringVar()
+        shortDetail = StringVar()
+
+        def send_data():
+            """
+            입력 버튼의 이벤트.
+            여기서 유저 객체를 생성하고 값들을 집어넣을 것이다.
+            :return: nothing
+            """
+            # 유저 패키지에 있는 SignUp 클래스를 불러 데이터 전달.
+            bookAdder = book.Book()
+            flag = bookAdder.addBook(title.get(), writer.get(), price.get(), hyperLink.get(), isbn.get(), shortDetail.get())
+            if flag:
+                messagebox.showerror('등록실패', '이미 존재하는 도서입니다. *동일한 isbn 존재')
+            else:
+                messagebox.showinfo('등록성공', '도서 등록에 성공하였습니다.')
+
+        titleLabel = Label(self.bookRegistWindow, text="책 이름").grid(row=0, column=1, sticky="W")
+        titleTextBox = Entry(self.bookRegistWindow, textvariable=title).grid(row=1, column=1, sticky="W")
+
+        writerLabel = Label(self.bookRegistWindow, text="저자").grid(row=2, column=1, sticky="W")
+        writerTextBox = Entry(self.bookRegistWindow, textvariable=writer).grid(row=3, column=1, sticky="W")
+
+        priceLabel = Label(self.bookRegistWindow, text="가격 (원)").grid(row=4, column=1, sticky="W")
+        priceTextBox = Entry(self.bookRegistWindow, textvariable=price).grid(row=5, column=1, sticky="W")
+
+        hyperLinkLabel = Label(self.bookRegistWindow, text="하이퍼링크").grid(row=6, column=1, sticky="W")
+        hyperLinkTextBox = Entry(self.bookRegistWindow, textvariable=hyperLink).grid(row=7, column=1, sticky="W")
+
+        isbnLabel = Label(self.bookRegistWindow, text="isbn 값").grid(row=8, column=1, sticky="W")
+        isbnTextBox = Entry(self.bookRegistWindow, textvariable=isbn).grid(row=9, column=1, sticky="W")
+
+        shortDetailLabel = Label(self.bookRegistWindow, text="간단 설명").grid(row=8, column=1, sticky="W")
+        shortDetailTextBox = Entry(self.bookRegistWindow, textvariable=shortDetail, width=50).grid(row=9, column=1, sticky="W")
+
+        oKayButton = Button(self.bookRegistWindow, text="입력 완료", width=10, command=send_data).grid(row=10, column=3)
 
         ##################################################################################################################
         ##################################################################################################################

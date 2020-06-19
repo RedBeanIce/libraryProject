@@ -22,19 +22,19 @@ class Book:
         self.isbn = None
         self.bookShortDetail = None
 
-    def addBook(self):
+    def addBook(self, title, writer, price, hypr, isbn, shotDtail):
         """
             도서 정보를 추가한다.
         :return: null
         """
-        self.titile = input('책 이름 : ')
-        self.writer = input('저자 : ')
-        self.price = input('가격 : ')
-        self.hyperLink = input('하이퍼링크 : ')
-        self.isbn = input('책의 ISBN : ')
-        self.bookShortDetail = input('책 간략 소개 : ')
+        self.title = title
+        self.writer = writer
+        self.price = price
+        self.hyperLink = hypr
+        self.isbn = isbn
+        self.bookShortDetail = shotDtail
 
-        userData = [self.titile, self.writer, self.price, self.hyperLink, self.isbn, self.bookShortDetail]
+        userData = [self.title, self.writer, self.price, self.hyperLink, self.isbn, self.bookShortDetail]
 
         # 유저 데이터 리스트를 만든다.
         for i in range(0, 6):
@@ -57,6 +57,7 @@ class Book:
         else:
             dataSaver = dataControl.DataSaver(userData)
             dataSaver.saveData('bookData.txt')
+        return chk
 
     def cuttingData(self, dataList):
         """
