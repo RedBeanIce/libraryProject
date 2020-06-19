@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
 
 
 class GUIMaker:
@@ -22,6 +24,9 @@ class GUIMaker:
 
         # 대여 관련
         self.rentWindow = None
+
+        # 텍스트박스 (Entry) 에 저장된 값을 쓰기 위한 변수 StringVar()
+        self.stringVar = None
 
         window = tk.Tk()
         window.title("Library System")
@@ -60,6 +65,30 @@ class GUIMaker:
         self.userRegistWindow = tk.Tk()
         self.userRegistWindow.title("사용자 등록")
         self.userRegistWindow.geometry("500x300")
+
+        self.stringVar = StringVar()
+
+        nameLabel = Label(self.userRegistWindow, text="이름").grid(row=0, column=1)
+        nameTextBox = Entry(self.userRegistWindow, textvariable=self.stringVar).grid(row=1, column=1)
+
+        birthDayLabel = Label(self.userRegistWindow, text="생년월일 ex)19960203").grid(row=2, column=1)
+        birthDayTextBox = Entry(self.userRegistWindow, textvariable=self.stringVar).grid(row=3, column=1)
+
+        sexLabel = Label(self.userRegistWindow, text="성별 남자 / 여자").grid(row=4, column=1)
+        sexTextBox = Entry(self.userRegistWindow, textvariable=self.stringVar).grid(row=5, column=1)
+
+        phoneNumLabel = Label(self.userRegistWindow, text="전화번호 ex) 01043362155 ").grid(row=6, column=1)
+        phoneNumTextBox = Entry(self.userRegistWindow, textvariable=self.stringVar).grid(row=7, column=1)
+
+        eMailLabel = Label(self.userRegistWindow, text="이메일").grid(row=8, column=1)
+        eMailTextBox = Entry(self.userRegistWindow, textvariable=self.stringVar).grid(row=9, column=1)
+
+        tButton = tk.Button(self.userRegistWindow, text="입력 완료", command=self.test33333333, width=10).grid(row=10, column=3)
+
+    def test33333333(self):
+
+        messagebox.showinfo('test', self.stringVar.get())
+
 
     def bookRegiWindow(self):
         """
