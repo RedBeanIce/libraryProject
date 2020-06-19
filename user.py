@@ -37,16 +37,16 @@ class SignUp:
         self.loadedData = self.cuttingList()
         # 필요한 데이터만 남기고 자른다.
 
-    def addUser(self):
+    def addUser(self, name, birthday, sex, phoneNum, eMail, picture="c://temp"):
         """
             사용자 정보를 입력받고 체크 후 저장.
         """
-        self.name = input('이름 : ')
-        self.birthday = input('생년월일 ex)19960203 : ')
-        self.sex = input('성별 남자 / 여자 : ')
-        self.phoneNum = input('전화번호 ex) 01043362155 : ')
-        self.eMail = input('이메일 : ')
-        self.picture = input('사진경로 : ')
+        self.name = name
+        self.birthday = birthday
+        self.sex = sex
+        self.phoneNum = phoneNum
+        self.eMail = eMail
+        self.picture = picture
 
         # 이름과 생일을 검사하여 같은 값이 있는지 확인
         chk = False
@@ -64,6 +64,7 @@ class SignUp:
             saver = dataControl.DataSaver(self.getUserData())
             saver.saveData('userData.txt')
             # DataSaver 클래스를 사용한 사용자 정보 저장.
+        return chk
 
     def makeUserData(self):
         """
