@@ -40,6 +40,7 @@ class DataLoader:
 
     def __init__(self):
         self.data = list()
+        self.stringList = list()
         # list 형태로 데이터를 내보낸다.
 
     def loadData(self, fileName):
@@ -53,6 +54,7 @@ class DataLoader:
                 break
 
             self.makeList(line)
+            self.stringList.append(line)
             # 한 라인씩 읽은 데이터를 리스트로 가공.
 
         file.close()
@@ -69,3 +71,7 @@ class DataLoader:
 
     def returnData(self):
         return self.data
+
+    def returnStringData(self):
+        return self.stringList
+

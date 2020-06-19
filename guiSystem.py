@@ -2,10 +2,17 @@ import tkinter as tk
 from tkinter import *
 import user
 import book
+import dataControl
 from tkinter import messagebox
 
 class GUIMaker:
+    def quit(self):
+        self.loopChk = False
+        quit()
+
     def __init__(self):
+
+        self.loopChk = True
         # 윈도우로 사용할 아이들
 
         # 등록 관련 ( 도서, 사용자 )
@@ -27,6 +34,7 @@ class GUIMaker:
         self.rentWindow = None
 
 
+        # 초기 윈도우
         self.window = tk.Tk()
         self.window.title("Library System")
         self.window.geometry("500x500")
@@ -37,7 +45,7 @@ class GUIMaker:
         deleteButton = tk.Button(self.window, text="삭제", command=self.deleteWindow, height=5, width=50).pack(pady=10)
         rentButton = tk.Button(self.window, text="대여", command=self.rentalWindow, height=5, width=50).pack(pady=10)
 
-        quitButton = tk.Button(self.window, text="종료", command=quit, width=10).pack(side="right", padx=10)
+        quitButton = tk.Button(self.window, text="종료", command=self.quit, width=10).pack(side="right", padx=10)
 
         self.window.mainloop()
 
@@ -83,10 +91,11 @@ class GUIMaker:
             # 유저 패키지에 있는 SignUp 클래스를 불러 데이터 전달.
             userAdder = user.SignUp()
             flag = userAdder.addUser(name.get(), birthday.get(),sex.get(), phoneNum.get(), eMail.get())
-            if flag == True:
+            if flag:
                 messagebox.showerror('등록 실패', '이름, 생년월일이 같은 사용자가 이미 존재. 등록실패')
             else:
                 messagebox.showinfo('등록성공', '사용자 등록에 성공하셨습니다.')
+
 
         nameLabel = Label(self.userRegistWindow, text="이름").grid(row=0, column=1, sticky="W")
         nameTextBox = Entry(self.userRegistWindow, textvariable=name).grid(row=1, column=1, sticky="W")
@@ -110,6 +119,7 @@ class GUIMaker:
             등록 윈도우에서 책 버튼을 눌렀을 때 나타남.
         :return: nothing
         """
+
         self.regiWindow.destroy()
 
         self.bookRegistWindow = tk.Tk()
@@ -172,6 +182,7 @@ class GUIMaker:
             조회 버튼을 눌렀을 때 띄워지는 윈도우
         :return: nothing
         """
+        self.window.destroy()
 
         self.searchWindow = tk.Tk()
         self.searchWindow.title("조회")
@@ -186,9 +197,26 @@ class GUIMaker:
         """
         self.searchWindow.destroy()
 
+        dataLoader = dataControl.DataLoader()
+        dataLoader.loadData('userData.txt')
+        userlist = list()
+        userlist = dataLoader.returnStringData()
+
         self.userSCWindow = tk.Tk()
         self.userSCWindow.title("사용자 조회")
         self.userSCWindow.geometry("500x300")
+
+        talkingLabel = Label(self.userSCWindow, text='유저 목록').pack(pady=5)
+        userListbox = Listbox(self.userSCWindow, height=0, selectmode="extended", width=30)
+
+        for i in range(0, len(userlist)):
+            userlist[i] = userlist[i].split(' ')[0] + ' ' + userlist[i].split(' ')[1]
+
+        for i in userlist:
+            print(i)
+            userListbox.insert(0,i)
+        userListbox.pack()
+
 
     def bookSearchWindow(self):
         """
@@ -250,40 +278,9 @@ class GUIMaker:
         self.rentWindow.geometry("500x500")
 
 
-test = GUIMaker()
+chk = True
+while chk:
 
-
-'''
-def tetetete():
-    print('test')
-
-    print(stringVar.get())
-#def userRegiWindow(self):
-    """
-        등록 윈도우에서 유저 버튼을 눌렀을 때 나타남.
-    :return: nothing
-    """
-userRegistWindow = tk.Tk()
-userRegistWindow.title("사용자 등록")
-userRegistWindow.geometry("300x300")
-
-stringVar = StringVar()
-
-nameLabel = Label(userRegistWindow, text="이름").grid(row=0, column=1, sticky="W")
-birthDayLabel = Label(userRegistWindow, text="생년월일 ex)19960203").grid(row=2, column=1, sticky="W")
-birthDayTextBox = Entry(userRegistWindow, textvariable=stringVar).grid(row=3, column=1, sticky="W")
-
-sexLabel = Label(userRegistWindow, text="성별 남자 / 여자").grid(row=4, column=1, sticky="W")
-sexTextBox = Entry(userRegistWindow, textvariable=stringVar).grid(row=5, column=1, sticky="W")
-
-phoneNumLabel = Label(userRegistWindow, text="전화번호 ex) 01043362155").grid(row=6, column=1, sticky="W")
-phoneNumTextBox = Entry(userRegistWindow, textvariable=stringVar).grid(row=7, column=1, sticky="W")
-
-eMailLabel = Label(userRegistWindow, text="이메일").grid(row=8, column=1, sticky="W")
-eMailTextBox = Entry(userRegistWindow, textvariable=stringVar).grid(row=9, column=1, sticky="W")
-
-tButton = tk.Button(userRegistWindow, text="입력 완료", command=tetetete, width=10).grid(row=10, column=3)
-userRegistWindow.mainloop()
-'''
-
+    test = GUIMaker()
+    chk = test.loopChk
 

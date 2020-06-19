@@ -70,16 +70,12 @@ class SignUp:
         """
             입력받은 사용자 정보를 리스트로 만든다.
         """
-        self.instanceUserData.append(self.name)
-        self.instanceUserData.append(self.birthday)
-        self.instanceUserData.append(self.sex)
-        self.instanceUserData.append(self.phoneNum)
-        self.instanceUserData.append(self.eMail)
-        self.instanceUserData.append(self.picture)
+        self.instanceUserData = [self.name, self.birthday, self.sex, self.phoneNum, self.eMail, self.picture]
 
     def getUserData(self):
         """
             방금 입력받은 사용자 정보를 리턴
+            :return: 리스트화 된 유저 정보
         """
         return self.instanceUserData
 
@@ -93,5 +89,10 @@ class SignUp:
             instanceList.append( [i[0] , i[1]])
 
         return instanceList
+
+    def delete_user(self):
+        pass
+
+
 
 
